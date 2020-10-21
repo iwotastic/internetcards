@@ -1,0 +1,23 @@
+# VENV directories
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+
+# VSCode
+.vscode
+
+# Python general
+__pycache__
+
+# Project related
+deploy.py
+*.afdesign
+iic_cards.csv
+form_csv_sorter.py

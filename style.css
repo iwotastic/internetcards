@@ -1,0 +1,421 @@
+/* Basic Resets */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Typography */
+
+p {
+	font-size: 15pt;
+}
+
+.logo {
+	margin-top: 3pt;
+	width: 300px;
+}
+
+.logo + p {
+	margin-top: 0;
+}
+
+h2 {
+	margin: 10px;
+	color: #CB4335;
+}
+
+.blue-question {
+	margin-top: 15px;
+	color: #2E86C1;
+}
+
+.heading-no-margin {
+	margin-top: 0;
+}
+
+.status-bar {
+	background: #d0d0d0;
+	text-align: center;
+	font-size: 16pt;
+	padding-bottom: 3pt;
+	padding-left: 4.5pt;
+}
+
+/* Layout */
+
+.app {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+  height: 100vh;
+}
+
+.navbar {
+	background: linear-gradient(-45deg, #CB4335, #2E86C1);
+	color: #fff;
+	display: flex;
+}
+
+.navbar .left {
+	font-size: 16pt;
+	padding: 10pt;
+	display: block;
+	flex: 1;
+}
+
+.navbar .right {
+	font-size: 16pt;
+	padding: 10pt;
+	display: block;
+}
+
+.content {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+}
+
+.content > .sidebar {
+	display: flex;
+	flex-direction: column;
+	width: 200pt;
+	background-color: #dddddd;
+}
+
+@media (max-width: 550px) {
+	.content:not(.sidebar-hidden) > .scene {
+		display: none;
+	}
+
+	.content > .sidebar {
+		display: block;
+		flex: 1;
+		width: unset;
+		background-color: #dddddd;
+	}
+}
+
+.content.sidebar-hidden > .sidebar {
+	display: none;
+}
+
+.scene {
+	text-align: center;
+  margin: 0;
+	padding: 0;
+	flex: 1;
+	width: 0;
+	min-width: 0;
+	overflow-y: scroll;
+}
+
+.scene:not([data-active-scene]) {
+  display: none;
+}
+
+.scene.no-center {
+	text-align: left;
+}
+
+.row {
+	width: 100%;
+	display: flex;
+	padding: 5pt;
+	justify-content: center;
+	column-gap: 5pt;
+}
+
+.row > * {
+	width: 250pt;
+}
+
+.row > div > div {
+	text-align: left;
+}
+
+@media (max-width: 511pt) {
+	.row {
+		display: block;
+	}
+	
+	.row > * {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media (min-width: 511pt) {
+	.row > *:not(:first-child) {
+		border-left: #888 1pt solid;
+		padding-left: 5pt;
+	}
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	padding: 4pt;
+	background: #dddddd;
+	font-size: 10pt;
+	text-align: center;
+}
+
+/* Input boxes */
+
+input:not([type=checkbox]) {
+  width: 150pt;
+  border: 2pt #bbb solid;
+  border-radius: 5pt;
+  font-size: 12pt;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 5pt;
+}
+
+input:not([type=checkbox]):focus {
+  border: 2pt #000 solid;
+  outline: none;
+}
+
+/* Buttons */
+
+.btn-row {
+	margin-top: 7pt;
+}
+
+.btn {
+	padding: 5pt;
+	border-radius: 6pt;
+	border: none;
+	border-bottom: 3pt #2471A3 solid;
+	font: 12pt "Helvetica Neue", Helvetica, sans-serif;
+	background: #2E86C1;
+	box-shadow: 0 3pt 3pt #000;
+	transition: all 0.2s;
+	color: #fff;
+}
+
+.btn:hover {
+	box-shadow: 0 0 0pt #000;
+	border-bottom: 3pt #2471A3 solid;
+  transform: translatey(3pt);
+  cursor: pointer;
+}
+
+.btn:active {
+	border-bottom: 0pt #999 solid;
+	transform: translatey(6pt);
+}
+
+.btn.danger {
+	padding: 5pt;
+	border-radius: 6pt;
+	border: none;
+	border-bottom: 3pt #A93226 solid;
+	font: 12pt "Helvetica Neue", Helvetica, sans-serif;
+	background: #CB4335;
+	box-shadow: 0 3pt 3pt #000;
+	transition: all 0.2s;
+	color: #fff;
+}
+
+.btn.danger:hover {
+	box-shadow: 0 0 0pt #000;
+	border-bottom: 3pt #A93226 solid;
+  transform: translatey(3pt);
+  cursor: pointer;
+}
+
+.btn.danger:active {
+	border-bottom: 0pt #999 solid;
+	transform: translatey(6pt);
+}
+
+/* Cards */
+
+.card-list {
+	width: 100%;
+	height: 180pt;
+	display: flex;
+	overflow-y: scroll;
+	overflow-x: visible;
+	padding: 0;
+}
+
+.card-list > div {
+	padding: 0;
+	margin: 0;
+}
+
+.card-list > button {
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	border: none;
+}
+
+.card-list > button > div {
+	padding: 5pt;
+	margin: 5pt;
+	height: 170pt;
+	width: 100pt;
+	border-radius: 5pt;
+	background: linear-gradient(-45deg, #A93226, #CB4335);
+	text-align: left;
+	color: #fff;
+	font: 12pt "Helvetica Neue", Helvetica, sans-serif;
+	transition: all 0.2s;
+}
+
+.card-list > button:hover > div {
+	transform: translatey(-5pt);
+	box-shadow: 0 5pt 3pt #333;
+	cursor: pointer;
+}
+
+.card-list > button:active > div {
+	transform: translatey(0pt) scale(0.9);
+	box-shadow: none;
+	cursor: pointer;
+}
+
+.card {
+	padding: 5pt;
+	margin: 5pt;
+	height: 170pt;
+	width: 100pt;
+	border-radius: 5pt;
+	text-align: left;
+	color: #fff;
+	font: 12pt "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.card.red {
+	background: linear-gradient(-45deg, #A93226, #CB4335);
+}
+
+.card.blue {
+	background: linear-gradient(-45deg, #2471A3, #2E86C1);
+}
+
+.inline-group {
+	display: inline-flex;
+}
+
+/* Checkboxes */
+
+.checkboxes > label {
+	display: inline-block;
+	padding: 5pt;
+	border-radius: 5pt;
+	margin: 0;
+	margin-left: 5pt;
+	background-color: #eeeeee;
+	cursor: pointer;
+}
+
+.checkboxes > label > input {
+	margin-left: 5pt;
+}
+
+.checkboxes > .btn {
+	padding: 5pt;
+	border-radius: 5pt;
+	margin: 0;
+	margin-left: 5pt;
+	background-color: #8db9d6;
+	cursor: pointer;
+	box-shadow: none;
+	border: none;
+	color: #0f3955;
+}
+
+.checkboxes > .btn:hover {
+	background-color: #2471A3;
+	transform: none;
+	color: #fff;
+}
+
+.checkboxes > .btn:active {
+	background-color: #2E86C1;
+	transform: none;
+	color: #fff;
+}
+
+/* Bottom bar */
+
+.bottom-bar {
+	position: fixed;
+	bottom: 0;
+	right: 10pt;
+	padding: 5pt;
+	border-top-left-radius: 5pt;
+	border-top-right-radius: 5pt;
+	background: #2E86C1;
+}
+
+.bottom-bar.hidden {
+	display: none;
+}
+
+.bottom-bar > button {
+	padding: 5pt;
+	border-radius: 5pt;
+	border: 0;
+	font: 12pt "Helvetica Neue", Helvetica, sans-serif;
+	color: #fff;
+	background: #2471A3;
+	cursor: pointer;
+}
+
+/* Chat messgaes */
+
+.message-title {
+	display: flex;
+}
+
+.message-title > span {
+	font-size: 17pt;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 5pt;
+	font-weight: bold;
+	flex: 1;
+}
+
+.message-list {
+	flex: 1;
+	overflow-y: scroll;
+}
+
+.message {
+	padding: 5pt;
+}
+
+.message-compose {
+	height: 50pt;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.message-compose > input {
+	flex: 1;
+	width: unset;
+}
+
+.message-compose > button {
+	border: 2pt #bbb solid;
+  border-radius: 5pt;
+  font-size: 12pt;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	padding: 5pt;
+}

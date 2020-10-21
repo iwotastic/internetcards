@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ian's Internet Cards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="navbar">
+      <span class="left" id="nav-left">Ian's Internet Cards</span>
+      <span class="right" id="nav-right"></span>
+    </div>
+
+    <div class="content sidebar-hidden">
+      <div class="scene" data-scene="connecting" data-active-scene>
+        <p>Connecting...</p>
+      </div>
+
+      <div class="scene" data-scene="closed">
+        <h1>Ian's Internet Cards is Down</h1>
+        <p>Either I'm working on new features or the server decided it wanted a nap.</p>
+      </div>
+
+      <div class="scene" data-scene="error">
+        <h1>Connection Error</h1>
+        <p>This isn't supposed to happen.</p>
+      </div>
+
+      <div class="scene" data-scene="start">
+        <img class="logo" src="logo.png" alt="Ian's Internet Cards">
+        <p>What would you like to do?</p>
+        <button class="btn" id="join-room">Join a Room</button>
+        <button class="btn" id="make-room">Make a Room</button>
+        <div class="footer">
+          Ian's Internet Cards is &copy; 2020 <a href="https://ianmorrill.com">Ian Morrill</a> some rights reserved. Cards are &copy; 2020 their original authors and do not necessarily represent my personal opinions. 
+        </div>
+      </div>
+
+      <div class="scene" data-scene="make-room">
+        <h1>Create Room</h1>
+        <p>What would you like to call yourself?</p>
+        <input type="text" id="mr-name">
+        <p>What packs would you like to play with?</p>
+        <div class="checkboxes" id="mr-packs"></div>
+        <div class="btn-row">
+          <button class="btn" id="mr-submit">Make This Room</button>
+          <button class="btn danger" id="mr-back">Back</button>
+        </div>
+      </div>
+
+      <div class="scene" data-scene="add-your-own-cards">
+        <h1>Add Your Own Cards</h1>
+        <div class="row">
+          <div>
+            <h2 class="blue-question heading-no-margin">Questions:</h2>
+            <div>Click "Add Question" to add your own questions to the deck. Underscores will automatically replaced by blanks.</div>
+            <table>
+              <tbody id="ayoc-questions"></tbody>
+              <tfoot>
+                <tr>
+                  <td><button class="btn" id="ayoc-add-question">Add Question</button></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div>
+            <h2 class="heading-no-margin">Answers:</h2>
+            <div>Click "Add Answer" to add your own answers to the deck.</div>
+            <table>
+              <tbody id="ayoc-answers"></tbody>
+              <tfoot>
+                <tr>
+                  <td><button class="btn" id="ayoc-add-answer">Add Answer</button></td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <button class="btn" id="ayoc-back">Save</button>
+      </div>
+
+      <div class="scene" data-scene="room-creator-lobby">
+        <h1>Lobby</h1>
+        <p>Your room's code is <b><span id="rcl-code"></span></b>. The people here besides you are:</p>
+        <ul id="rcl-members"></ul>
+        <div class="btn-row">
+          <button class="btn" id="rcl-copy-invite">Copy Invite Link</button>
+          <button class="btn" id="rcl-start-game">Start the Game</button>
+          <button class="btn danger" id="rcl-cancel">Cancel Game</button>
+        </div>
+      </div>
+
+      <div class="scene" data-scene="join-room">
+        <h1>Join Room</h1>
+        <p>What is the code of the room you are trying to join (six digits)?</p>
+        <input type="tel" id="jr-code" placeholder="######">
+        <p>What would you like to call yourself?</p>
+        <input type="text" id="jr-name">
+        <div class="btn-row">
+          <button class="btn" id="jr-submit">Join Room</button>
+          <button class="btn danger" id="jr-back">Back</button>
+        </div>
+      </div>
+
+      <div class="scene" data-scene="room-joiner-lobby">
+        <h1>Lobby</h1>
+        <p>You've joined a lobby with:</p>
+        <ul id="rjl-members"></ul>
+        <p>The room creator will start the game soon.</p>
+      </div>
+
+      <div class="scene" data-scene="host-left">
+        <h1>The Room Creator Left</h1>
+        <button class="btn" id="hl-back">Main Menu</button>
+      </div>
+
+      <div class="scene" data-scene="preparing-game">
+        <h1>Preparing Game...</h1>
+        <p>Hang tight</p>
+      </div>
+
+      <div class="scene" data-scene="question">
+        <div class="status-bar">The judge for this round is <span id="q-judge"></span>.</div>
+        <h2 class="blue-question">Question:</h2>
+        <div class="inline-group">
+          <div class="card blue inline" id="q-question"></div>
+        </div>
+        <h2>Answers:</h2>
+        <div class="card-list" id="q-answers"></div>
+      </div>
+
+      <div class="scene" data-scene="waiting-for-others">
+        <h1>Waiting for everyone else to submit...</h1>
+        <p>Your selection was:</p>
+        <div class="inline-group">
+          <div class="card blue" id="wfo-question"></div>
+          <div class="card red" id="wfo-answer"></div>
+        </div>
+      </div>
+
+      <div class="scene" data-scene="judging">
+        <h1>You're the Judge: Pick the best answer to this question:</h1>
+        <div class="inline-group">
+          <div class="card blue" id="j-question"></div>
+        </div>
+        <h1>... From these answers:</h1>
+        <div class="card-list" id="j-answers"></div>
+      </div>
+
+      <div class="scene" data-scene="waiting-for-judge">
+        <h1>Your Judge, <span id="wfj-judge"></span>, is deliberating...</h1>
+        <h2 class="blue-question">Question:</h2>
+        <div class="inline-group">
+          <div class="card blue" id="wfj-question"></div>
+        </div>
+        <h2>Answers submitted:</h2>
+        <div class="card-list" id="wfj-answers"></div>
+      </div>
+
+      <div class="scene" data-scene="judge-selected">
+        <h1>The judge has decided!</h1>
+        <p><b id="js-submitted-by"></b> won this round with:</p>
+        <div class="inline-group">
+          <div class="card blue" id="js-question"></div>
+          <div class="card red" id="js-answer"></div>
+        </div>
+        <p>Next round coming in 5 seconds...</p>
+      </div>
+
+      <div class="scene" data-scene="you-are-the-judge">
+        <h1>You are the judge this round.</h1>
+        <p>Waiting for your friends to submit their answers...</p>
+        <h2 class="blue-question">Question:</h2>
+        <div class="inline-group">
+          <div class="card blue" id="yatj-question"></div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="message-title">
+          <span>Chat</span>
+          <button class="btn danger" id="close-chat">Close</button>
+        </div>
+        <div class="message-list" id="message-list"></div>
+        <form class="message-compose" id="msg-form">
+          <input type="text" id="msg-content" placeholder="Message...">
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar hidden">
+    <button id="open-chat">Open Chat</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
