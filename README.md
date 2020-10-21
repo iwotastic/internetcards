@@ -2,8 +2,7 @@
 <div align="center">An internet-based, Cards Against Humanity-inspired party game.</div>
 <div align="center">
   <a href="https://internetcards.ianmorrill.com">Play It!</a> |
-  <a href="https://github.com/iwotastic/internetcards/issues/new">Report A Bug</a> |
-  <a href="https://github.com/iwotastic/internetcards/wiki">Learn More...</a>
+  <a href="https://github.com/iwotastic/internetcards/issues/new">Report A Bug</a>
 </div>
 
 ---
