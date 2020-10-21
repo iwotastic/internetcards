@@ -37,6 +37,5 @@ python3 main.py
 |-------|---------|
 | `iic_cards.csv`, `iic_cards.json` | Provide card data for the game, use `python form_csv_sorter.py` to generate `iic_cards.json`. |
 | `index.html`, `script.js`, `style.css` | Files loaded by the web that communicate with the Python-based WebSockets server. |
-| `form_csv_sorter` | Generates `iic_cards.json` from `iic_cards.csv`. |
 | `main.py` | The file run to start the WebSockets server. |
 | All other python files | Get included by `main.py` to run the server. |
