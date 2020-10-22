@@ -34,7 +34,10 @@ python3 main.py
 ## Code Organization
 | Files | What do they do? |
 |-------|---------|
-| `iic_cards.csv`, `iic_cards.json` | Provide card data for the game, use `python form_csv_sorter.py` to generate `iic_cards.json`. |
+| `iic_cards.json` | Provides raw machine-readable cards for Ian's Internet Cards. |
 | `index.html`, `script.js`, `style.css` | Files loaded by the web that communicate with the Python-based WebSockets server. |
 | `main.py` | The file run to start the WebSockets server. |
-| All other python files | Get included by `main.py` to run the server. |
+| `member.py` | A class that encapsulates all state of a member of a game room. |
+| `deck_manager.py` | A singleton that keeps the main deck from `iic_cards.json` in memory. |
+| `game_manager.py` | A class that encapsulates game state and is associated with the creator of a room. |
+| `utils.py` | Contains utility function that make sending JSON data less annoying. |
