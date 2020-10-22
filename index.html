@@ -44,6 +44,17 @@
         <input type="text" id="mr-name">
         <p>What packs would you like to play with?</p>
         <div class="checkboxes" id="mr-packs"></div>
+        <p>Who should be able to join your game?</p>
+        <div class="checkboxes">
+          <label for="mr-public-game">
+            Everyone
+            <input type="radio" name="game-availability" id="mr-public-game">
+          </label>
+          <label for="mr-private-game">
+            Only people with a code
+            <input type="radio" name="game-availability" id="mr-private-game">
+          </label>
+        </div>
         <div class="btn-row">
           <button class="btn" id="mr-submit">Make This Room</button>
           <button class="btn danger" id="mr-back">Back</button>

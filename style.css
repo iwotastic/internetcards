@@ -172,7 +172,7 @@ h2 {
 
 /* Input boxes */
 
-input:not([type=checkbox]) {
+input:not([type=checkbox]):not([type=radio]) {
   width: 150pt;
   border: 2pt #bbb solid;
   border-radius: 5pt;
@@ -181,7 +181,7 @@ input:not([type=checkbox]) {
   padding: 5pt;
 }
 
-input:not([type=checkbox]):focus {
+input:not([type=checkbox]):not([type=radio]):focus {
   border: 2pt #000 solid;
   outline: none;
 }
