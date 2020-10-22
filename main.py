@@ -28,7 +28,7 @@ async def handleRoomCreation(ws, initObj, setRoom):
 
 async def handleRoomJoin(ws, initObj, setRoom):
   if "name" in initObj and initObj["name"].strip() != "":
-    if "joinCode" in initObj and initObj["joinCode"].__len__() == 6:
+    if "joinCode" in initObj and len(initObj["joinCode"]) == 6:
       if initObj["joinCode"] in games and games[initObj["joinCode"]].status == "open":
         for member in games[initObj["joinCode"]].members:
           await send_object(member.ws, {

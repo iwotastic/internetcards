@@ -17,7 +17,7 @@ class Member:
     self.chatMessageHandler = None
 
   def fillHand(self, deck):
-    while self.hand.__len__() < self.handLimit:
+    while len(self.hand) < self.handLimit:
       self.hand.append(deck.pop())
 
   async def addObj(self, obj):

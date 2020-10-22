@@ -20,7 +20,7 @@ class GameManager:
     self.joinCode = "".join(str(randint(0, 9)) for i in range(0, 6))
 
   def addMember(self, member):
-    memberId = self.members.__len__()
+    memberId = len(self.members)
     member.chatMessageHandler = self.handleChatMessage
     self.members.append(member)
     return memberId
@@ -52,7 +52,7 @@ class GameManager:
 
   def fillAllHands(self):
     for member in self.members:
-      if self.answers.__len__() < 1:
+      if len(self.answers) < 1:
         self.setUpDecks(self.packs)
       member.fillHand(self.answers)
 
@@ -75,7 +75,7 @@ class GameManager:
   async def sendOutNewQuestion(self):
     self.fillAllHands()
 
-    if self.questions.__len__() == 0:
+    if len(self.questions) == 0:
       self.setUpDecks(self.packs)
 
     self.question = self.questions.pop().replace("[[BLANK]]", "___")
@@ -102,7 +102,7 @@ class GameManager:
   async def startGame(self):
     await self.broadcastToAll({"action": "preparingGame"})
 
-    self.judge = randint(0, self.members.__len__() - 1)
+    self.judge = randint(0, len(self.members) - 1)
     self.status = "ingame"
     self.setUpDecks(self.packs)
 
@@ -152,5 +152,5 @@ class GameManager:
 
       # Get ready for next round
       self.clearSelectedCards(answerData)
-      self.judge = (self.judge + 1) % self.members.__len__()
+      self.judge = (self.judge + 1) % len(self.members)
     
